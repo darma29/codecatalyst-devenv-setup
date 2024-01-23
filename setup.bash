@@ -35,6 +35,9 @@ if [[ ":$PATH:" != *":$go_path:"* ]]; then
 fi
 ' >> ~/.bashrc
 
+# Source the updated .bashrc
+source ~/.bashrc
+
 # Display completion message
 echo "Environment setup completed!"
 
