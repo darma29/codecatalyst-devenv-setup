@@ -3,9 +3,6 @@
 # Enable debug mode
 set -x
 
-# Install starship
-echo -e "\n" | curl -sS https://starship.rs/install.sh | sh -s -- -y
-
 # Install the_silver_searcher
 sudo dnf -y groupinstall "Development Tools" && \
 sudo dnf -y install pcre-devel xz-devel zlib-devel && \
@@ -26,7 +23,12 @@ echo '
 ### Custom script for codecatalyst ###
 # git completion
 source /usr/share/doc/git/contrib/completion/git-completion.bash
-# Install starship: curl -sS https://starship.rs/install.sh | sh
+# Check if starship is installed
+if ! command -v starship &> /dev/null; then
+  # Install starship
+  curl -sS https://starship.rs/install.sh | sh -s -- -y > /dev/null
+fi
+# Initialize starship
 eval "$(starship init bash)"
 # Install lazygit : go install github.com/jesseduffield/lazygit@latest
 go_path="~/go/bin"
@@ -40,7 +42,7 @@ source ~/.bashrc
 
 # Display completion message
 echo "Environment setup completed!"
-cd ~
+cd /projects 
 
 # Disable debug mode
 set +x
