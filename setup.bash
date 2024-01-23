@@ -40,6 +40,7 @@ source ~/.bashrc
 
 # Display completion message
 echo "Environment setup completed!"
+cd ~
 
 # Disable debug mode
 set +x
